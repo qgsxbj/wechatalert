@@ -1,0 +1,26 @@
+#!/usr/bin/python
+
+import requests
+import sys
+import logging
+
+def monitoralert(title,msg):
+	#userIds = "orPQ80xfVko7JTYX0p17MHTnW1jszp0O6tc14w"
+	url = "http://wxmsg.dingliqc.com/send"
+	
+	useridfile = open('/home/leoqin/monitor/alert/conf/userids')
+	for userIds in useridfile.readlines():
+		userIds=userIds.strip('\n')
+		print(userIds)	
+		pyload = {"title":title,"msg":msg,"userIds":userIds,"url":url}
+		print(pyload)
+		r = requests.get(url,pyload)
+		print(r.status_code)
+		if r.status_code == 200:
+    			logging.info("Send Message successfull!!!")
+		else:
+    			logging.info("Send Message failed!!!")
+
+logging.basicConfig(filename='/home/leoqin/monitor/alert/logs/logger.log', level=logging.INFO)
+monitoralert(sys.argv[1],sys.argv[2])
+

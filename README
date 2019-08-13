@@ -1,0 +1,10 @@
+# 监控微信告警模块开发说明
+
+1、关注公众号： WxPusher 获取推送公众号所需要的UserId
+2、获取到ID后，可查看到微信账号所对应的UserIds，Copy此UserId到conf目录下的userIds文件中；（注，每一行放一个userIds）
+3、添加监控的服务项目： 进入alert.sh，添加需要监控的进程名到server_arry的变量中，以逗号进行分隔。
+
+注：
+	1、安装环境需要支持Python3环境
+	2、需要安装第三方模块包：requests
+
